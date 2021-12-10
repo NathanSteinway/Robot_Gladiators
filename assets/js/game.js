@@ -15,11 +15,15 @@ var fight = function(enemyNames) {
   
   if (promptFight === "fight" || promptFight === "FIGHT") {
 
-    enemyHealth = Math.max(0, enemyHealth - playerAttack);
+    var damage = randomNumber(playerAttack - 3, playerAttack);
+
+    enemyHealth = Math.max(0, enemyHealth - damage);
 
     console.log(playerName + enemyNames + " attacked " + playerName + ". " + enemyNames + " now has " + enemyHealth + " health remaining.");
 
-    playerHealth = Math.max(0, playerHealth - enemyAttack);
+    var damage = randomNumber(enemyAttack - 3, enemyAttack);
+
+    playerHealth = Math.max(0, playerHealth - damage);
 
     console.log( enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
@@ -81,7 +85,7 @@ var startGame = function() {
 
             var pickedEnemyName = enemyNames[i];
 
-            enemyHealth = 50;
+            enemyHealth = randomNumber();
 
             fight(pickedEnemyName);
 
@@ -173,5 +177,11 @@ var shop = function() {
           break;
       }
 };
+
+var randomNumber = function(min, max) {
+    var value = Math.floor(Math.random() * (max - min + 1) + min);
+  
+    return value;
+  };
 
 startGame();

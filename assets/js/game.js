@@ -1,28 +1,32 @@
 window.alert("Welcome to Robot Gladiators!");
+
 var playerName = window.prompt("What is your robot's name?");
 var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+
 var playerHealth = 100;
 var playerAttack = 10;
 var playerMoney = 10;
 
-// You can also log multiple values at once like this
-console.log(playerName, playerAttack, playerHealth);
-
-var enemyName = "Roborto";
+var enemyNames = ['Roborto', 'Amy Android', 'Robo Trumble'];
 var enemyHealth = 50;
 var enemyAttack = 12;
 
-var fight = function() {
+console.log(enemyNames);
+console.log(enemyNames.length);
+console.log(enemyNames[0]);
+console.log(enemyNames[3]);
+
+var fight = function(enemyNames) {
   
   if (promptFight === "fight" || promptFight === "FIGHT") {
 
     enemyHealth = enemyHealth - playerAttack;
 
-    console.log(playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining.");
+    console.log(playerName + enemyNames + " attacked " + playerName + ". " + enemyNames + " now has " + enemyHealth + " health remaining.");
 
     playerHealth = playerHealth - enemyAttack;
 
-    console.log(enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
+    console.log( enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining.");
 
         if (playerHealth <= 0) {
 
@@ -38,12 +42,12 @@ var fight = function() {
 
         if (enemyHealth <= 0) {
 
-            window.alert(enemyName + " has died!");
+            window.alert( enemyNames + " has died!");
 
         } 
         else {
 
-            window.alert(enemyName + " still has " + enemyHealth + " health left.");
+            window.alert( enemyNames + " still has " + enemyHealth + " health left.");
         }
 
         }   else if (promptFight === "skip" || promptFight === "SKIP") {
@@ -58,8 +62,8 @@ var fight = function() {
 
                 } else {
 
-                    fight();
-                    
+                    fight(enemyNames);
+
                 }
 
         }   else {
@@ -69,4 +73,6 @@ var fight = function() {
 };
 
 
-fight();
+for(var i = 0; i < enemyNames.length; i++) {
+    fight(enemyNames[i]);
+  }

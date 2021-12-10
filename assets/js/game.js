@@ -59,12 +59,14 @@ var fight = function(enemyNames) {
 
                     fight(enemyNames);
 
-                }
+                } 
+                
+            } else {
 
-        }   else {
+                    window.alert("You need to choose a valid option. Try again!");
+                    
+                };
 
-                window.alert("You need to choose a valid option. Try again!");
-        }
 };
 
 var startGame = function() {
@@ -116,4 +118,6 @@ var endGame = function() {
 
     }
 };
+
+startGame();
 

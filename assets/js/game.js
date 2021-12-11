@@ -1,12 +1,47 @@
 window.alert("Welcome to Robot Gladiators!");
 
-var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+var fightOrSkip = function() {
+
+    var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
+
+    if (promptFight === "" || promptFight === null) {
+        window.alert("You need to provide a valid answer! Please try again.");
+        return fightOrSkip();
+    }
+
+    promptFight = promptFight.toLocaleLowerCase();
+
+    if (promptFight === "skip" || promptFight === "SKIP") {
+
+        var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+
+        if (confirmSkip) {
+
+            window.alert(playerInfo.name + " has decided to run! " + playerInfo.name + " is a coward!");
+
+            playerInfo.playerMoney = playerInfo.money - 10;
+
+            return true;
+
+        }
+
+        return false;
+    }
+}
+
+
 
 var fight = function(enemy) {
 
 console.log(enemy);
   
-  if (promptFight === "fight" || promptFight === "FIGHT") {
+  while (playerInfo.health > 0 && enemy.health > 0) {
+
+    if (fightOrSkip()) {
+        break;
+    }
+
+  }
 
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
@@ -37,32 +72,11 @@ console.log(enemy);
             window.alert( enemy.name + " has died!");
 
         } 
+
         else {
 
             window.alert( enemy.name + " still has " + enemy.health + " health left.");
         }
-
-        }   else if (promptFight === "skip" || promptFight === "SKIP") {
-
-                var confirmSkip = window.confirm("Are you sure you'd like to quit?");
-
-                if (confirmSkip) {
-
-                    window.alert(playerInfo.name + " has decided to run! Coward!");
-
-                    playerInfo.money = Math.max(0, playerInfo.money - 10);
-
-                } else {
-
-                    fight (enemy.name);
-
-                } 
-                
-            } else {
-
-                    window.alert("You need to choose a valid option. Try again!");
-                    
-                };
 
 };
 

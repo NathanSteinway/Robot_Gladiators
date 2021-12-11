@@ -11,7 +11,7 @@ var fightOrSkip = function() {
 
     promptFight = promptFight.toLocaleLowerCase();
 
-    if (promptFight === "skip" || promptFight === "SKIP") {
+    if (promptFight === "skip") {
 
         var confirmSkip = window.confirm("Are you sure you'd like to quit?");
 
@@ -24,24 +24,20 @@ var fightOrSkip = function() {
             return true;
 
         }
-
-        return false;
     }
+
+    return false;
 }
-
-
 
 var fight = function(enemy) {
 
 console.log(enemy);
   
-  while (playerInfo.health > 0 && enemy.health > 0) {
+    while (playerInfo.health > 0 && enemy.health > 0) {
 
-    if (fightOrSkip()) {
-        break;
-    }
-
-  }
+        if (fightOrSkip()) {
+            break;
+        }
 
     var damage = randomNumber(playerInfo.attack - 3, playerInfo.attack);
 
@@ -78,6 +74,7 @@ console.log(enemy);
             window.alert( enemy.name + " still has " + enemy.health + " health left.");
         }
 
+    }
 };
 
 var startGame = function() {
@@ -149,22 +146,19 @@ var shop = function() {
 
 
     switch (shopOptionPrompt) {
-        case "REFILL":
-        case "refill":
+        case 1:
             playerInfo.refillHealth();
-    break;
-        case "UPGRADE":
-        case "upgrade":
+            break;
+        case 2:
             playerInfo.upgradeAttack();
-    break;
-        case "LEAVE": // new case
-        case "leave":
+            break;
+        case 3:
             window.alert("Leaving the store.");
-    break;
+            break;
         default:
             window.alert("You did not pick a valid option. Try again.");
             shop();
-    break;
+            break;
       }
 };
 
